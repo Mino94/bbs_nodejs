@@ -11,7 +11,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="javascript/jquery.twbsPagination.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.min.js"></script> -->
+<style>
+table {
+    width: 50%;
+}
 
+
+</style>
 </head>
 <body>
     <%
@@ -28,72 +34,74 @@
        return depth==0?"":ts + rs;
     }
     %>
-<h2>환영합니다. <%=user %>님 반갑습니다</h2>
 
-<div align="center">
-        <table border="1">
-        <col width="70"><col width="500"><col width="150">
+  <nav class="navbar navbar-light bg-light">
+    <span class="navbar-text">
+        <b><%=user %></b> 님 반갑습니다
+    </span>
+  </nav>
+<br>
+<div class="container">
+    <div align="center">
+        <table class="table table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>번호</th><th>제목</th><th>작성자</th>
+                </tr>
+            </thead>
 
-        <tr>
-            <th>번호</th><th>제목</th><th>작성자</th>
-        </tr>
-        <%
-         if (data == null) { // 글이 없었을 때
+            <%
+            if (data == null) { // 글이 없었을 때
+                %>
+                <tr>
+                    <td colspan="3">작성된 글이 없습니다.</td>
+                </tr>    
+                <% 
+            } else {
+                data.forEach(function (data,index){ 
             %>
             <tr>
-                <td colspan="3">작성된 글이 없습니다.</td>
-            </tr>    
-            <% 
-        } else {
-            data.forEach(function (data,index){ 
-        %>
-        <tr>
-            <td>
-                <%=index+1 %>
-            </td>    
-            <td>
-                <% if( data.DEL == 0){ %>
-                    <%- arrow(data.DEPTH)%>
-                    <a href='/bbsdetail?seq=<%= data.SEQ %>'><%=data.TITLE %></a>
-                <% } else {
+                <td>
+                    <%=index+1 %>
+                </td>    
+                <td>
+                    <% if( data.DEL == 0){ %>
+                        <%- arrow(data.DEPTH)%>
+                        <a href='/bbsdetail?seq=<%= data.SEQ %>'><%=data.TITLE %></a>
+                    <% } else {
+                        %>
+                        <font color="#ff0000">********* 이 글은 작성자에 의해서 삭제되었습니다</font> 
+                        <%
+                    }
                     %>
-                    <font color="#ff0000">********* 이 글은 작성자에 의해서 삭제되었습니다</font> 
-                    <%
+                </td>
+                <td>
+                    <%= data.ID %>
+                </td>            
+            </tr>
+            <%      
+                    });
                 }
-                %>
-            </td>
-            <td>
-                <%= data.ID %>
-            </td>            
-        </tr>
-        <%      
-                });
-            }
-        %>    
-            
+            %>    
+
         </table>
-    <br>
+    <a class="btn btn-blue float-right btn-primary" href="/bbswrite">글쓰기</a>
     <div class="row d-flex justify-content-center">
         <nav aria-label="Page navigation example" style="text-align: center;">
             <ul class="pagination" id="pagination"></ul>
         </nav>	
     </div>
 
-    <select id="choice">
+    <select class="selectpicker" id="choice">
         <option value="sel">선택</option>
         <option value="title">제목</option>
         <option value="content">내용</option>
         <option value="writer">작성자</option>
     </select>
 
-    <input id="search" placeholder="검색어입력" size="20">
-
-    <button onclick="searchBbs(1)">검색</button>
-
-    <br><br>
-
-    <a href="/bbswrite">글쓰기</a>
-
+    <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+    <button onclick="searchBbs(1)" type="submit" class="btn btn-dark">검색</button>
+</div>
 </div>
 
 <script>

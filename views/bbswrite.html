@@ -5,48 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-<style>
-    .wrapper{
-        width: 300px;
-        border-radius: 10px;
-        border: 5px solid #ff9e11;
-        margin: auto;
-    }
-
-    .wrapper div{
-        text-align: center;
-    }
-
-    .wrapper input, textarea, button{
-        width: 90%;
-    }
-
-    textarea{
-        height: 250px;
-    }
+    
+	
+    <style type="text/css">
+		.container{
+			margin-top: 10%;
+			width: 500px;
+		}
+	</style>
 </style>
 </head>
 <body>
-    <div class="wrapper">
+    <div class="container py-5 h-200 border">
         <form action="bbswriteAf" method="post">
-            <table border="1">
-                <col width="70">
-                <col width="600">
-                <tr>
-                    <td>작성자(ID)</td>
-                    <td><input name="id" type="text" size=100 id="writer" value="<%=user %>"></td>
-                </tr>
-                <tr>
-                    <td>제목</td>
-                    <td><input name="title" type="text" size=100 id="writer" value=""></td>
-                </tr>
-                <tr>
-                    <td>내용</td>
-                    <td><textarea name="content" cols="100" rows="30" id="content" value=""></textarea></td>
-                </tr>
-            </table>
+                <div class="form-group">
+                    <label>작성자(ID)</label>
+                    <input name="id" class="form-control" type="text" size=100 id="writer" value="<%=user %>">
+                </div>
+                <div class="form-group">
+                    <label>제목</label>
+                    <input class="form-control" name="title" type="text" size=100 id="writer" value="">
+                </div>
+                <div class="form-group">
+                    <label>내용</label>
+                    <textarea class="form-control" name="content" cols="100" rows="30" id="content" value=""></textarea>
+                </div>
             <br><br>
-            <button type="submit" id="btn">글작성 완료</a>
+            <button type="button" class="btn btn-primary" type="submit" id="btn" >글작성 완료</a>
         </form>
     </div>
 </body>

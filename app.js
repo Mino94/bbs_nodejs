@@ -17,7 +17,7 @@ app.set('view engine', 'ejs');
 // public 폴더의 추가
 app.use(express.static(path.join(__dirname, 'public')));
 
-var port = 8089
+var port = 8089;
 var server = app.listen(port, function(){
     console.log(`server start... port:${port}`);
 });

@@ -44,7 +44,7 @@ app.post("/bbswriteAf", function(req, res){
      })
 });
 // update
-app.get("/updateBbs", function(req, res){
+app.get("/regist", function(req, res){
     console.log("수정 게시판 접속");
     var seq = req.query.seq;
     console.log(seq);
@@ -53,7 +53,6 @@ app.get("/updateBbs", function(req, res){
         seq:seq,
     });
 });
-
 app.post("/updateBbsAf", function(req, res){
     var seq = req.body.seq;
     var title = req.body.title;
@@ -101,6 +100,13 @@ app.get("/deleteBbs", function(req, res){
 app.get("/bbsdetail", function(req, res){
     var seq = req.query.seq;
     console.log(seq);
+    var updsql = " UPDATE BBS SET READCOUNT=READCOUNT+1 "
+            + " WHERE SEQ = "+ seq;
+
+    conn.query(updsql, function(err, updresults){
+        if(err) console.log(err);
+    });
+
     var sql = " SELECT SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, DEL, READCOUNT " + " FROM BBS "
             + " WHERE SEQ = "+ seq;
 
@@ -216,15 +222,15 @@ app.post("/answerAf", function(req, res){
 
     param1 = [seq, seq];
     conn.query(sql1, param1, function(err, results1){
-            if(err) console.log(err);
-            
-            console.log(JSON.stringify(results1));
-            
-            if(results1.affectedRows == 0){
-                res.render('message.ejs', {proc:"answer1", msg:"OK"});
-            }else{
-                res.render('message.ejs', {proc:"answer1", msg:"NO"});
-            }
+        if(err) console.log(err);
+        
+        console.log(JSON.stringify(results1));
+        
+        if(results1.affectedRows > 0){
+            res.render('message.ejs', {proc:"answer1", msg:"OK"});
+        }else{
+            res.render('message.ejs', {proc:"answer1", msg:"NO"});
+        }
     });
 
     // insert
@@ -238,7 +244,7 @@ app.post("/answerAf", function(req, res){
     
             console.log(JSON.stringify(results2));
     
-            if(results2.affectedRows == 1){
+            if(results2.affectedRows > 0){
                 res.render('message.ejs', {proc:"answer2", msg:"OK"});
             }else{
                 res.render('message.ejs', {proc:"answer2", msg:"NO"});
