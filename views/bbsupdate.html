@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div align="center">
+	<h2>수정 게시판</h2>
+   <form action="updateBbsAf" method="post">
+   		<input type="hidden" name="seq" value="<%=seq %>">
+		<table border="1">
+			<col width="70">
+			<col width="600">
+			<tr>
+				<td>작성자(ID)</td>
+				<td><input name="id" type="text" size=100 id="writer" value="<%=user %>"></td>
+			</tr>
+			<tr>
+				<td>제목</td>
+				<td><input name="title" type="text" size=100 id="title" value=""></td>
+			</tr>
+			<tr>
+				<td>내용</td>
+				<td><textarea name="content" cols="100" rows="30" id="content" value=""></textarea></td>
+			</tr>
+		</table>
+		<br><br>
+		<button type="submit" id="btn">글 수정 완료</a>
+	</button>
+</div>
+
+
+<script type="text/javascript">
+
+
+</script>
+</body>
+</html>

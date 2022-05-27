@@ -1,0 +1,94 @@
+<!-- 
+<% if(proc == 'regi'){ %>
+    <% if(msg == 'OK'){ %>
+        <script type="text/javascript">
+        alert("성공적으로 가입되었습니다");
+        location.href = 'login';
+        </script>
+    <%}else{ %>
+        <script type="text/javascript">
+        alert("다시 기입해 주십시오");
+        location.href = 'regi';
+        </script>
+    <%} %>
+<%} %>
+  -->   
+		
+<script>
+var process = '<%=proc %>';
+// alert(process);
+var msg = '<%=msg %>';
+
+switch(process){
+    case "regi":
+        if(msg == "OK") {
+            alert("성공적으로 가입되었습니다");
+            location.href = 'login';
+        }
+        else{
+            alert("다시 기입해 주십시오");
+            location.href = 'regi';
+        }
+        break; 
+    case "login":
+        if(msg == "OK"){
+            alert("환영합니다");
+            location.href = 'bbslist';
+        }else{
+            alert("아이디나 비밀번호가 틀렸습니다");
+            location.href = 'login';
+        }
+        break;
+
+    case "delbbs":
+        if(msg == "OK"){
+            alert("삭제 성공 했습니다.");
+            location.href = 'bbslist';
+        }else{
+            alert("삭제 실패 했습니다.");
+            location.href = 'bbsdetail';
+        }
+        break;
+    case "insertBbs":
+        if(msg == "OK"){
+            alert("글 작성 완료 했습니다.");
+            location.href = 'bbslist';
+        }else{
+            alert("글 작성 실패 했습니다.");
+            location.href = 'bbsdetail';
+        }
+        break;
+    case "updbbs":
+        if(msg == "OK"){
+            alert("글 수정 완료 했습니다.");
+            location.href = 'bbslist';
+        }else{
+            alert("글 수정 실패 했습니다.");
+            location.href = 'bbslist';
+        }
+        break;
+    case "answer1":
+        if(msg == "OK"){
+            alert("answer1 답글 작성 완료 했습니다.");
+            location.href = 'bbslist';
+        }else{
+            alert("answer1 답글 작성 실패 했습니다.");
+            location.href = 'bbslist';
+        }
+        break;
+    case "answer2":
+        if(msg == "OK"){
+            alert("답글 작성 완료 했습니다.");
+            location.href = 'bbslist';
+        }else{
+            alert("답글 작성 실패 했습니다.");
+            location.href = 'bbslist';
+        }
+        break;
+}
+
+
+</script>  
+
+
+

@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+   <h2>상세 글 보기</h2>
+   <div align="center">
+      <table border="1">
+         <colgroup>
+            <col style="width: 200px">
+            <col style="width: 400px">
+         </colgroup>
+
+         <tr>
+            <th>작성자</th>
+            <td><%=data.ID %></td>
+         </tr>
+         <tr>
+            <th>작성일</th>
+            <td><%=data.WDATE %></td>
+         </tr>
+         <tr>
+            <th>조회수</th>
+            <td><%=data.REF %></td>
+         </tr>
+         <tr>
+            <th>제목</th>
+            <td id="title"><%=data.TITLE %></td>
+            <!-- input으로 확인하는 경우가 많음 -->
+         </tr>
+         <tr>
+            <th>정보</th>
+            <td><%=data.REF %> - <%=data.STEP %> - <%=data.DPTH %></td>
+         </tr>
+         <tr>
+            <th>내용</th>
+            <td><textarea row="15" cols="90" readonly="readonly"><%=data.CONTENT %></textarea>
+            </td>
+         </tr>
+
+      </table>
+
+      <br>
+      <button type="button" onclick="answerBbs('<%=data.SEQ %>')">답글</button>
+      <button type="button" onclick="location.href='/bbslist'">글목록</button>
+
+      <%
+      if (data.ID == user) { //작성자만 수정할 수 있게
+      %>
+      <button type="button" onclick="updateBbs('<%=data.SEQ %>')">수정</button>
+      <button type="button" onclick="deleteBbs('<%=data.SEQ %>')">삭제</button>
+      <%
+      }
+      %>
+
+   </div>
+   
+   <script type="text/javascript">
+   function answerBbs(seq){
+      location.href = "answer?seq=" + seq;
+   }
+   function updateBbs(seq){
+	   location.href = "updateBbs?seq=" + seq;
+   }
+   function deleteBbs(seq){
+	   location.href = "deleteBbs?seq=" + seq;
+   }
+   
+   </script>
+</body>
+</html>
