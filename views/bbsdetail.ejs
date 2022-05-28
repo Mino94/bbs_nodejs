@@ -4,60 +4,74 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="javascript/jquery.twbsPagination.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.min.js"></script> -->
+<style>
+
+   .container{
+		margin-top: 5%;
+	}
+
+</style>
 </head>
 <body>
-   <h2>상세 글 보기</h2>
-   <div align="center">
-      <table border="1">
-         <colgroup>
-            <col style="width: 200px">
-            <col style="width: 400px">
-         </colgroup>
+   <div class="container">
+      <h2>상세 글 보기</h2>
+      <div align="center">
+         <table class="table">
+            <colgroup>
+               <col style="width: 200px">
+               <col style="width: 400px">
+            </colgroup>
 
-         <tr>
-            <th>작성자</th>
-            <td><%=data.ID %></td>
-         </tr>
-         <tr>
-            <th>작성일</th>
-            <td><%=data.WDATE %></td>
-         </tr>
-         <tr>
-            <th>조회수</th>
-            <td><%=data.READCOUNT %></td>
-         </tr>
-         <tr>
-            <th>제목</th>
-            <td id="title"><%=data.TITLE %></td>
-            <!-- input으로 확인하는 경우가 많음 -->
-         </tr>
-         <tr>
-            <th>정보</th>
-            <td><%=data.REF %> - <%=data.STEP %> - <%=data.DEPTH %></td>
-         </tr>
-         <tr>
-            <th>내용</th>
-            <td><textarea row="15" cols="90" readonly="readonly"><%=data.CONTENT %></textarea>
-            </td>
-         </tr>
+            <tr>
+               <th>작성자</th>
+               <td><%=data.ID %></td>
+            </tr>
+            <tr>
+               <th>작성일</th>
+               <td><%=data.WDATE %></td>
+            </tr>
+            <tr>
+               <th>조회수</th>
+               <td><%=data.READCOUNT %></td>
+            </tr>
+            <tr>
+               <th>제목</th>
+               <td id="title"><%=data.TITLE %></td>
+               <!-- input으로 확인하는 경우가 많음 -->
+            </tr>
+            <tr>
+               <th>정보</th>
+               <td><%=data.REF %> - <%=data.STEP %> - <%=data.DEPTH %></td>
+            </tr>
+            <tr>
+               <th>내용</th>
+               <td><textarea row="15" cols="90" readonly="readonly"><%=data.CONTENT %></textarea>
+               </td>
+            </tr>
 
-      </table>
+         </table>
 
-      <br>
-      <button type="button" onclick="answerBbs('<%=data.SEQ %>')">답글</button>
-      <button type="button" onclick="location.href='/bbslist'">글목록</button>
+         <br>
+         <button type="button" onclick="answerBbs('<%=data.SEQ %>')">답글</button>
+         <button type="button" onclick="location.href='/bbslist'">글목록</button>
 
-      <%
-      if (data.ID == user) { //작성자만 수정할 수 있게
-      %>
-      <button type="button" onclick="updateBbs('<%=data.SEQ %>')">수정</button>
-      <button type="button" onclick="deleteBbs('<%=data.SEQ %>')">삭제</button>
-      <%
-      }
-      %>
+         <%
+         if (data.ID == user) { //작성자만 수정할 수 있게
+         %>
+         <button type="button" onclick="updateBbs('<%=data.SEQ %>')">수정</button>
+         <button type="button" onclick="deleteBbs('<%=data.SEQ %>')">삭제</button>
+         <%
+         }
+         %>
 
+      </div>
    </div>
-   
    <script type="text/javascript">
    function answerBbs(seq){
       location.href = "answer?seq=" + seq;

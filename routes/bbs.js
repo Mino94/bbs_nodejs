@@ -44,7 +44,7 @@ app.post("/bbswriteAf", function(req, res){
      })
 });
 // update
-app.get("/regist", function(req, res){
+app.get("/updateBbs", function(req, res){
     console.log("수정 게시판 접속");
     var seq = req.query.seq;
     console.log(seq);
